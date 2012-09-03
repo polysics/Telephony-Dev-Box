@@ -9,19 +9,21 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.network :hostonly, "192.168.10.10"
+  config.ssh.forward_agent = true
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
     chef.data_bags_path = "data_bags"
     chef.add_recipe "apt"
-    chef.add_recipe "prism"
-    chef.add_recipe "rayo"
-    chef.add_recipe "prism_upstart"
+    # chef.add_recipe "prism"
+    # chef.add_recipe "rayo"
+    # chef.add_recipe "prism_upstart"
     chef.add_recipe "asterisk"
     chef.add_recipe "motd-tail"
     chef.add_recipe "java"
     chef.add_recipe "ruby_build"
     chef.add_recipe "rbenv::user"
+    chef.add_recipe "load-testing"
 
     chef.json = {
       asterisk: {
@@ -52,6 +54,8 @@ Vagrant::Config.run do |config|
 
     chef.log_level = :debug
   end
+
+  #config.vm.share_folder("v-home", "/home/vagrant", "./vagrant", :nfs => true)
 
   config.package.name = 'mojolingo_dev.box'
 end
