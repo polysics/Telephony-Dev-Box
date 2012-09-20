@@ -84,14 +84,22 @@ Vagrant::Config.run do |config|
       chef.json = {
         'name' => domain,
         'prism' => {
+          'artifacts' => {
+            'url' => 'https://prism-app-server.s3.amazonaws.com/daily/prism-trunk_C201209131230_0-x64.bin',
+            'checksum' => 'aa58eeea42ddc5c2e2ddef60c35d7d757508ebd1ff8b35d8e495a5c90e8b18bc'
+          },
           'user' => 'vagrant',
           'group' => 'vagrant',
+          'local_ipv4' => ip,
           'public_ipv4' => ip,
-          'nat_mode' => false,
+          'nat_mode' => true,
+          'relay_port' => false
         },
         'rayo' => {
           'node' => {
-            'domains' => [domain]
+            'artifact' => 'http://ci.voxeolabs.net/jenkins/job/Rayo/204/artifact/rayo-war/target/rayo.b204.war',
+            'checksum' => '46d928684555dc4c8aa2bf7f046b78f4a751f82c7c85aa8d4245101d38340635',
+            'domains'  => [domain]
           }
         }
       }
