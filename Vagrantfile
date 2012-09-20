@@ -134,7 +134,16 @@ Vagrant::Config.run do |config|
 
       chef.log_level = :debug
 
-      chef.json = {}
+      chef.json = {
+        'lumenvox' => {
+          'tts' => {
+            'voices' => %w{Chris Lindsey Ben Chloe}
+          },
+          'sre' => {
+            'language_packs' => %w{BritishEnglish}
+          }
+        }
+      }
     end
   end
 end
