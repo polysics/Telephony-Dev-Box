@@ -34,3 +34,6 @@
 [submodule "cookbooks/lumenvox"]
 	path = cookbooks/lumenvox
 	url = https://github.com/mojolingo/lumenvox-chef.git
+[submodule "cookbooks/yum"]
+	path = cookbooks/yum
+	url = https://github.com/opscode-cookbooks/yum.git
