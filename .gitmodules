@@ -31,9 +31,6 @@
 [submodule "cookbooks/jmxsh"]
 	path = cookbooks/jmxsh
 	url = https://bitbucket.org/voxeolabs/jmxsh-chef
-[submodule "cookbooks/yum"]
-	path = cookbooks/yum
-	url = https://github.com/cookbooks/yum.git
 [submodule "cookbooks/lumenvox"]
 	path = cookbooks/lumenvox
 	url = https://github.com/mojolingo/lumenvox-chef.git
