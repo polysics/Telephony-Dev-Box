@@ -141,6 +141,12 @@ Vagrant::Config.run do |config|
           },
           'sre' => {
             'language_packs' => %w{BritishEnglish}
+          },
+          'media_server' => {
+            'mrcp_server_ip' => ip
+          },
+          'client' => {
+            'license_servers' => ['127.0.0.1:7569']
           }
         }
       }
