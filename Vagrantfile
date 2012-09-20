@@ -75,7 +75,6 @@ Vagrant::Config.run do |config|
     prism.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "cookbooks"
       chef.data_bags_path = "data_bags"
-      chef.add_recipe "yum"
       chef.add_recipe "jmxsh"
       chef.add_recipe "prism"
       chef.add_recipe "rayo"
@@ -117,6 +116,25 @@ Vagrant::Config.run do |config|
           local_ip: public_ip
         }
       }
+    end
+  end
+
+  config.vm.define :lumenvox do |lumenvox|
+    domain = "lumenvox.local-dev.mojolingo.com"
+    ip     = "192.168.10.14"
+
+    lumenvox.vm.box = 'centos63_64min'
+    lumenvox.vm.network :hostonly, ip
+    lumenvox.vm.host_name = domain
+
+    lumenvox.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.data_bags_path = "data_bags"
+      chef.add_recipe "lumenvox"
+
+      chef.log_level = :debug
+
+      chef.json = {}
     end
   end
 end
