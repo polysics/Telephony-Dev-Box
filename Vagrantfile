@@ -1,7 +1,10 @@
+require 'pathname'
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
 
   config.vm.define :adhearsion do |adhearsion|
+    docroot_path = Pathname.new("ahnhome").realpath.to_s
+    adhearsion.vm.share_folder "ahnhome", "/home/vagrant/shared", docroot_path, :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
     adhearsion.vm.network :hostonly, "192.168.10.10"
     adhearsion.vm.host_name = "adhearsion.local-dev.mojolingo.com"
 
@@ -19,14 +22,14 @@ Vagrant::Config.run do |config|
         'rbenv' => {
           'user_installs' => [
             { 'user'    => 'vagrant',
-              'rubies'  => ['1.9.3-p194', 'jruby-1.6.8'],
+              'rubies'  => ['1.9.3-p194', 'jruby-1.7.0-preview2'],
               'global'  => '1.9.3-p194',
               'gems'    => {
                 '1.9.3-p194' => [
                   { 'name' => 'bundler' },
                   { 'name' => 'adhearsion' }
                 ],
-                'jruby-1.6.8' => [
+                'jruby-1.7.0-preview2' => [
                   { 'name' => 'bundler' },
                   { 'name' => 'adhearsion' }
                 ]
